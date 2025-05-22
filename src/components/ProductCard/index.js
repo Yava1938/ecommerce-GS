@@ -11,7 +11,7 @@ const ProductCard = ({ product, agregarAlCarrito, size }) => {
   return (
     <section className="product-card">
       <article className="product-image">
-        <img className='product-img' src={product.image} alt={product.title} style={{height: size || '150px'}}/>
+        <img className='product-img' src={product.image} alt={product.title} style={{height: size || '25vh', width: '100%', objectFit: 'contain'}}/>
       </article>
       <article className="product-details">
         <h3 className='product-name'>{product.title}</h3>
