@@ -17,6 +17,7 @@
 .cart__main{
   box-sizing: border-box;
   overflow: auto;
+  height: 65vh;
 }
 
 .carrito-product{
@@ -92,9 +93,6 @@ right: 0;
 .cart__title{
   font-size: 40px;
 }
-.cart__main{
-    height: 560px;
-}
 
 .cart-product-img{
   width: 25%;
@@ -151,9 +149,7 @@ right: 0;
 .cart__title{
   font-size: 40px;
 }
-.cart__main{
-    height: 550px;
-}
+
 
 .cart-product-img{
   width: 25%;
@@ -206,9 +202,7 @@ right: 0;
 .cart__title{
   font-size: 40px;
 }
-.cart__main{
-    height: 560px;
-}
+
 
 .cart-product-img{
   width: 25%;
@@ -269,10 +263,7 @@ right: 0;
 .cart__title{
   font-size: 40px;
 }
-.cart__main{
-    height: 1390px;
-  
-}
+
 
 .cart-product-img{
   width: 25%;
