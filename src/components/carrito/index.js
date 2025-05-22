@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import icon from '../../resources/basura.png'
 import './index.css';  
 
-const Carrito = ({visible, elementos, eliminacion}) => {
+const Carrito = ({visible, elementos, eliminacion, comprar}) => {
 
   useEffect(() => {
     console.log('Carrito actualizado:', elementos);
@@ -21,16 +21,13 @@ const Carrito = ({visible, elementos, eliminacion}) => {
                   <section className='cart-product-details'>
                     <article className='cart-product-title'>
                       <h3>{element.title}</h3>
-                      {/* Product */}
                     </article>
                     <article className='cart-product-price'>
                       <h4>${element.price}</h4>
-                      {/* precio */}
                     </article>
                   </section>
                   <section className='cart-product-icon'>
                     <img src={icon} alt="icon eliminar" className="delete__icon" onClick={() =>{eliminacion(index)}}/>
-                    {/* icon */}
                   </section>
                 </article>
           ))}
@@ -41,7 +38,9 @@ const Carrito = ({visible, elementos, eliminacion}) => {
             </section>
               } 
               <section className='car_comprar'>
-                <button className="cart__button" id="btn__comprar" disabled={elementos.length === 0} >COMPRAR</button>
+                <button className="cart__button" id="btn__comprar" disabled={elementos.length === 0} onClick={() => {
+                  comprar(); 
+                  }} >COMPRAR</button>
               </section>
         </section>
   );

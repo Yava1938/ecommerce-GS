@@ -19,6 +19,7 @@ const ProductDetails = () => {
     console.log('carrito visible: ' + carritoVisible)
   }
 
+  const [notifica, setNotifica] = useState(false);
   const [elementoCarrito, setElementoCarrito] = useState([])
   const agregarAlCarrito = (product) =>{
     console.log(product)
@@ -31,6 +32,17 @@ const ProductDetails = () => {
     nuevo.splice(product, 1); 
     return nuevo;
   });
+  }
+
+  const realizaCompra = ()=>{
+    console.log('false')
+    
+    setNotifica(true)
+    setElementoCarrito([])
+    CartToggle()
+    setTimeout(() => {
+                  setNotifica(false); 
+                }, 3000);
   }
   const { id } = useParams();
   const { product, loading, error } = useGetProductById(id);
@@ -45,9 +57,16 @@ const ProductDetails = () => {
   return (
   <div className="main-container">
   <Header CartToggle={CartToggle} elementos = {elementoCarrito.length} />
-  <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito} />
+  <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito}  comprar={realizaCompra}/>
   
-  
+  {notifica && (
+      <div className="notificacion-compra">
+        <span className='notificacion-texto'>
+          ¡Gracias por tu compra!
+          <p>Vuelve pronto...!</p>
+        </span>
+      </div>
+    )}
   <section className="product-specific-details">
 
       <ProductImage image={product.image} alt={product.title} sizeW={'390px'} sizeMW={'450px'}/>
