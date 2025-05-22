@@ -1,12 +1,10 @@
-import React from 'react';
-
-const ProductInfo = ({ title, rating, price }) => {
+const ProductInfo = ({ title, rating, reviews }) => {
   return (
     <article className="product-info">
       <h2>{title}</h2>
       <section className='info-main'>
-      <p><strong>Precio:</strong> ${price}</p>
-      <p><strong>Calificación:</strong> {rating} ⭐</p>
+      <p>Calificación: {rating} {'⭐'.repeat(Math.floor(rating))}</p>
+      <p>{reviews} opiniones</p>
       </section>
     </article>
   );

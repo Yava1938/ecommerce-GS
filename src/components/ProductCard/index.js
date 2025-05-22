@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './index.css'; 
 
-const ProductCard = ({ product, agregarAlCarrito }) => {
+const ProductCard = ({ product, agregarAlCarrito, size }) => {
 
   const anadealCarrito = () =>{
     agregarAlCarrito(product)
@@ -11,7 +11,7 @@ const ProductCard = ({ product, agregarAlCarrito }) => {
   return (
     <section className="product-card">
       <article className="product-image">
-        <img className='product-img' src={product.image} alt={product.title} />
+        <img className='product-img' src={product.image} alt={product.title} style={{height: size || '150px'}}/>
       </article>
       <article className="product-details">
         <h3 className='product-name'>{product.title}</h3>

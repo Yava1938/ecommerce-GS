@@ -10,35 +10,36 @@
     padding: 20px;
     border-radius: 10px;
     font-family: Arial, sans-serif;
-    background-color: rgb(224, 227, 230);
+
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex: 1;
     gap: 2rem;
   }
   
 
-  .specific-detail-img{
-    height: 290px;
-  }
-
   .specific-detail-main{
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   
   .product-info h2 {
     margin-bottom: 10px;
+    font-size: 28px;
   }
   
-  .product-rating {
-    margin-top: 20px;
-    font-size: 18px;
+  .product-price p {
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 10px;
   }
   
   .product-image img {
-    width: 100%;
-    max-width: 800px;
+    max-width: 120px;
     display: block;
     margin: 0 auto;
   }
@@ -56,11 +57,19 @@
     margin: 0 10px;
   }
 
+  .specific-detail-info{
+    display: flex;
+    flex-direction: column;
+    height: 25rem;
+    justify-content: space-between;
+  }
+
   .btn-specific-detail-car{
     background-color: #f0ad4e;
     border-radius: 10px;
     width: 135px;
     height: 40px;
+    margin: auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -72,6 +81,10 @@
 
   .btn-specific-detail-car:hover{
     background-color: #b67d2d;
+  }
+
+  .product-description :first-child{
+    margin: 10px 0;
   }
 
   .footer {
