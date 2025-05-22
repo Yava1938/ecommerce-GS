@@ -44,7 +44,7 @@ const ProductDetails = () => {
 
   return (
   <div className="main-container">
-  <Header CartToggle={CartToggle} elementos = {elementoCarrito} />
+  <Header CartToggle={CartToggle} elementos = {elementoCarrito.length} />
   <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito} />
   <section className="product-specific-details">
     <section className='specific-detail-img'>
