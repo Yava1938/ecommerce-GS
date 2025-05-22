@@ -20,17 +20,23 @@ const ProductDetails = () => {
   }
 
   const [notifica, setNotifica] = useState(false);
-  const [elementoCarrito, setElementoCarrito] = useState([])
+  const [elementoCarrito, setElementoCarrito] = useState( () =>{const guardado = localStorage.getItem('carrito');
+  return guardado ? JSON.parse(guardado) : [];
+  });
   const agregarAlCarrito = (product) =>{
     console.log(product)
     setElementoCarrito(prev => [...prev, product])
   }
 
+  const cerrarCarrito = () =>{
+    setCarritoVisible(false);
+  }
+
   const quitarAlCarrito = (product) =>{
     setElementoCarrito(prev => {
-    const nuevo = [...prev];  
-    nuevo.splice(product, 1); 
-    return nuevo;
+    const actual = [...prev];  
+    actual.splice(product, 1); 
+    return actual;
   });
   }
 
@@ -39,6 +45,7 @@ const ProductDetails = () => {
     
     setNotifica(true)
     setElementoCarrito([])
+    localStorage.removeItem('carrito');
     CartToggle()
     setTimeout(() => {
                   setNotifica(false); 
@@ -49,6 +56,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     console.log('Productos en el carrito:', elementoCarrito);
+    localStorage.setItem('carrito', JSON.stringify(elementoCarrito));
   }, [elementoCarrito]);
 
   if (loading) return <p>Cargando producto...</p>;
@@ -57,7 +65,7 @@ const ProductDetails = () => {
   return (
   <div className="main-container">
   <Header CartToggle={CartToggle} elementos = {elementoCarrito.length} />
-  <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito}  comprar={realizaCompra}/>
+  <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito}  comprar={realizaCompra} cerrarCarrito={cerrarCarrito}/>
   
   {notifica && (
       <div className="notificacion-compra">
