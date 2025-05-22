@@ -6,7 +6,7 @@ import Carrito from '../../components/carrito';
 import ProductImage from '../../components/ProductImage';
 import ProductInfo from '../../components/ProductInfo';
 import ProductDescription from '../../components/ProductDescription';
-import ProductRating from '../../components/ProductRating';
+import ProductPrice from '../../components/ProductPrice';
 import carrito from '../../resources/car.png'
 import { Footer } from '../../components/footer';
 import './index.css'
@@ -46,19 +46,23 @@ const ProductDetails = () => {
   <div className="main-container">
   <Header CartToggle={CartToggle} elementos = {elementoCarrito.length} />
   <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito} />
+  
+  
   <section className="product-specific-details">
-    <section className='specific-detail-img'>
-      <ProductImage image={product.image} alt={product.title} />
-    </section>
+
+      <ProductImage image={product.image} alt={product.title} sizeW={'390px'} sizeMW={'450px'}/>
+    
     <section className='specific-detail-info'>
+          <ProductInfo title={product.title} rating={product.rating.rate} reviews={product.rating.count}/>
+        <hr />
         <section className='specific-detail-main'>
-          <ProductInfo title={product.title} rating={product.rating.rate} price={product.price} />
+      <ProductPrice  price={product.price} />
           <button className="btn-specific-detail-car" onClick={() => {agregarAlCarrito(product)}}>Al carrito
             <img src={carrito} alt='Agregar al carrito' className='icon-carrito'/>
           </button>
         </section>
+          <hr />
       <ProductDescription description={product.description} category={product.category} />
-      <ProductRating  reviews={product.rating.count} />
     </section>
   </section>
   <Footer />
