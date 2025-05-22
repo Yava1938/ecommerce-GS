@@ -21,7 +21,6 @@ const ProductList = () => {
   const agregarAlCarrito = (product) =>{
     console.log(product)
     setElementoCarrito(prev => [...prev, product])
-    setElementoCarrito(prev => [...prev, product])
   }
 
   const quitarAlCarrito = (product) =>{
