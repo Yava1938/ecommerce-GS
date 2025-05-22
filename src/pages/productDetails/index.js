@@ -26,6 +26,10 @@ const ProductDetails = () => {
     setElementoCarrito(prev => [...prev, product])
   }
 
+  const cerrarCarrito = () =>{
+    setCarritoVisible(false);
+  }
+
   const quitarAlCarrito = (product) =>{
     setElementoCarrito(prev => {
     const nuevo = [...prev];  
@@ -57,7 +61,7 @@ const ProductDetails = () => {
   return (
   <div className="main-container">
   <Header CartToggle={CartToggle} elementos = {elementoCarrito.length} />
-  <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito}  comprar={realizaCompra}/>
+  <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito}  comprar={realizaCompra} cerrarCarrito={cerrarCarrito}/>
   
   {notifica && (
       <div className="notificacion-compra">

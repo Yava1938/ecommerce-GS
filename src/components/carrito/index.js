@@ -1,16 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import icon from '../../resources/basura.png'
 import './index.css';  
 
-const Carrito = ({visible, elementos, eliminacion, comprar}) => {
+const Carrito = ({visible, elementos, eliminacion, comprar, cerrarCarrito}) => {
+  const referenciaCarrito = useRef()
 
   useEffect(() => {
     console.log('Carrito actualizado:', elementos);
   }, [elementos]);
 
+  useEffect(() => {
+    const afueraCarrito = (event) =>{
+      if(visible && !referenciaCarrito.current.contains(event.target)){
+        cerrarCarrito()
+      }
+    }
+      document.addEventListener('mousedown', afueraCarrito);
+      return () => {
+        document.removeEventListener('mousedown', afueraCarrito)
+      }
+    }, [visible, cerrarCarrito]);
+  
   return (
-    <section className={`cart ${visible ? 'show': ''}`}>
-            <h2 className="cart__title">CARRITO</h2>
+    <section className={`cart ${visible ? 'show': ''}`} ref={referenciaCarrito} >
+            <h2 className="cart__title">MI CARRITO</h2>
             {elementos.length > 0?   
             <section className='cart__main'>
               {elementos.map((element, index) => (

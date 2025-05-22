@@ -30,7 +30,11 @@
   border-bottom: 1px solid #333;
 }
 
-
+.cart__title{
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
 .cart-product-imgage{
   width: 100%;
@@ -90,10 +94,6 @@
 right: 0;
 }
 
-.cart__title{
-  font-size: 40px;
-}
-
 .cart-product-img{
   width: 25%;
   height: 25%;
@@ -146,8 +146,8 @@ right: 0;
 right: 0;
 }
 
-.cart__title{
-  font-size: 40px;
+.carrito-product{
+  width: 98%;
 }
 
 
@@ -199,9 +199,6 @@ right: 0;
 right: 0;
 }
 
-.cart__title{
-  font-size: 40px;
-}
 
 
 .cart-product-img{
@@ -258,10 +255,6 @@ right: 0;
 
 .cart.show {
 right: 0;
-}
-
-.cart__title{
-  font-size: 40px;
 }
 
 
