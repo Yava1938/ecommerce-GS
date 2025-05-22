@@ -14,7 +14,7 @@ const ProductList = () => {
     setCarritoVisible( prev => !prev)
     console.log('carrito visible: ' + carritoVisible)
   }
-
+  const [notifica, setNotifica] = useState(false);
   const [elementoCarrito, setElementoCarrito] = useState([])
   const agregarAlCarrito = (product) =>{
     console.log(product)
@@ -29,6 +29,17 @@ const ProductList = () => {
   });
   }
 
+ const realizaCompra = ()=>{
+    console.log('false')
+    
+    setNotifica(true)
+    setElementoCarrito([])
+    CartToggle()
+     setTimeout(() => {
+                   setNotifica(false); 
+                 }, 3000);
+  }
+
   useEffect(() => {
   console.log('Productos en el carrito:', elementoCarrito);
 }, [elementoCarrito]);
@@ -40,7 +51,16 @@ const ProductList = () => {
   return (
     <div className="main-container">
     <Header CartToggle={CartToggle} elementos= {elementoCarrito.length}/>
-    <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito}/>
+    <Carrito visible={carritoVisible} elementos = {elementoCarrito} eliminacion={quitarAlCarrito} comprar={realizaCompra}/>
+    {notifica && (
+      <div className="notificacion-compra">
+        <span className='notificacion-texto'>
+          ¡Gracias por tu compra!
+          <p>Vuelve pronto...!</p>
+        </span>
+      </div>
+    )}
+    
     <section className="product-list">
       <h1>Lista de Productos</h1>
       <article className="products-container">

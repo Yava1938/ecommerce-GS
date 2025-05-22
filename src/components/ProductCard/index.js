@@ -15,7 +15,7 @@ const ProductCard = ({ product, agregarAlCarrito, size }) => {
       </article>
       <article className="product-details">
         <h3 className='product-name'>{product.title}</h3>
-        <p className='product-price'><strong>Precio:</strong> ${product.price}</p>
+        <p className='product-price'><strong>Precio:</strong> ${product.price} MXN</p>
         <p className='product-point'><strong>Calificación:</strong> {product.rating.rate} ⭐</p>
         <section className='product-btn'>
           <Link to={`/details/${product.id}`} className="btn details">Ver detalles</Link>
