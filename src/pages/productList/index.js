@@ -5,52 +5,20 @@ import { Footer } from '../../components/footer';
 
 import { useGetProducts } from '../../hooks/getProducts'; 
 import './index.css'
-import { useEffect, useState } from 'react';
+import { useGetCarrito } from '../../hooks/getCarrito';
 
 
 const ProductList = () => {
-  const [carritoVisible, setCarritoVisible] = useState(false);
-  const CartToggle = () =>{
-    setCarritoVisible( prev => !prev)
-    console.log('carrito visible: ' + carritoVisible)
-  }
-  const [notifica, setNotifica] = useState(false);
-  const [elementoCarrito, setElementoCarrito] = useState( () =>{const guardado = localStorage.getItem('carrito');
-  return guardado ? JSON.parse(guardado) : [];
-});
-  const agregarAlCarrito = (product) =>{
-    console.log(product)
-    setElementoCarrito(prev => [...prev, product])
-  }
-
-  const quitarAlCarrito = (product) =>{
-    setElementoCarrito(prev => {
-    const nuevo = [...prev];  
-    nuevo.splice(product, 1); 
-    return nuevo;
-  });
-  }
-
-  const cerrarCarrito = () =>{
-    setCarritoVisible(false);
-  }
-
- const realizaCompra = ()=>{
-    console.log('false')
-    setNotifica(true)
-    setElementoCarrito([])
-    localStorage.removeItem('carrito');
-    CartToggle()
-     setTimeout(() => {
-                   setNotifica(false); 
-                 }, 3000);
-  }
-
-  useEffect(() => {
-  console.log('Productos en el carrito:', elementoCarrito);
-  localStorage.setItem('carrito', JSON.stringify(elementoCarrito));
-}, [elementoCarrito]);
-
+  const {
+    carritoVisible,
+    CartToggle,
+    cerrarCarrito,
+    elementoCarrito,
+    agregarAlCarrito,
+    quitarAlCarrito,
+    realizaCompra,
+    notifica
+  } = useGetCarrito();
 
     const { products, loading, error } = useGetProducts();
     if (loading) return <p>Cargando productos...</p>;
