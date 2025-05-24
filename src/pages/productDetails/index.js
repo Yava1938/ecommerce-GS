@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetProductById } from '../../hooks/getProducts';
 import Header from '../../components/Header';
@@ -10,54 +9,23 @@ import ProductPrice from '../../components/ProductPrice';
 import carrito from '../../resources/car.png'
 import { Footer } from '../../components/footer';
 import './index.css'
+import { useGetCarrito } from '../../hooks/getCarrito';
 
 const ProductDetails = () => {
 
-  const [carritoVisible, setCarritoVisible] = useState(false);
-  const CartToggle = () =>{
-    setCarritoVisible( prev => !prev)
-    console.log('carrito visible: ' + carritoVisible)
-  }
+  const {
+      carritoVisible,
+      CartToggle,
+      cerrarCarrito,
+      elementoCarrito,
+      agregarAlCarrito,
+      quitarAlCarrito,
+      realizaCompra,
+      notifica
+    } = useGetCarrito();
 
-  const [notifica, setNotifica] = useState(false);
-  const [elementoCarrito, setElementoCarrito] = useState( () =>{const guardado = localStorage.getItem('carrito');
-  return guardado ? JSON.parse(guardado) : [];
-  });
-  const agregarAlCarrito = (product) =>{
-    console.log(product)
-    setElementoCarrito(prev => [...prev, product])
-  }
-
-  const cerrarCarrito = () =>{
-    setCarritoVisible(false);
-  }
-
-  const quitarAlCarrito = (product) =>{
-    setElementoCarrito(prev => {
-    const actual = [...prev];  
-    actual.splice(product, 1); 
-    return actual;
-  });
-  }
-
-  const realizaCompra = ()=>{
-    console.log('false')
-    
-    setNotifica(true)
-    setElementoCarrito([])
-    localStorage.removeItem('carrito');
-    CartToggle()
-    setTimeout(() => {
-                  setNotifica(false); 
-                }, 3000);
-  }
   const { id } = useParams();
   const { product, loading, error } = useGetProductById(id);
-
-  useEffect(() => {
-    console.log('Productos en el carrito:', elementoCarrito);
-    localStorage.setItem('carrito', JSON.stringify(elementoCarrito));
-  }, [elementoCarrito]);
 
   if (loading) return <p>Cargando producto...</p>;
   if (error) return <p>Error: {error}</p>;
